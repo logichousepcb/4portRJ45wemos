@@ -1,0 +1,62 @@
+esphome:
+  name: 4portrj45womos
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: ""
+  password: ""
+  ap:
+    ssid: "Alarmpanel8 Fallback Hotspot"
+    password: "vFKBTzu2op7L"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+web_server:
+  port: 80
+# Enable Home Assistant API
+api:
+
+ota:
+
+sensor:
+  - platform: dht
+    pin: D5
+    model: DHT11
+    temperature:
+      name: "Basement Back Door Temperature"
+    humidity:
+      name: "Basement Back Door Humidity"
+    update_interval: 20s
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: D1
+      inverted: True
+      mode: INPUT_PULLUP
+    name: "Gate Sensor 1"
+  - platform: gpio
+    pin:
+      number: D2
+      inverted: False
+      mode: INPUT_PULLUP
+    name: "Gate Sensor 2"
+  - platform: gpio
+    pin: 
+      number: D7
+      inverted: False
+      mode: INPUT_PULLUP
+    name: "Back Door Sensor 1"
+  - platform: gpio
+    pin:
+      number: D6
+      inverted: True
+      mode: INPUT_PULLUP
+    name: "Front Gate"
+    device_class: door
+      
+
